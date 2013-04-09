@@ -3,10 +3,6 @@ learn-smthng
 
 MOOC platform in clojure and for clojure
 
-# learn-smthng
-
-FIXME
-
 ## Prerequisites
 
 You will need [Leiningen][1] 1.7.0 or above installed.
