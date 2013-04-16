@@ -1,12 +1,14 @@
 (ns learn-smthng.handler
   (:use compojure.core)
-  (:require [compojure.handler :as handler]
+  (:require [org.httpkit.server :as server]
             [compojure.route :as route]))
 
-(defroutes app-routes
+(def env (into {} (System/getenv)))
+
+(defroutes app
   (GET "/" [] "Hello World")
   (route/resources "/")
   (route/not-found "Not Found"))
 
-(def app
-  (handler/site app-routes))
+(defn -main [& args]
+  (server/run-server app { :ip (env "HOST") :port (Integer/parseInt (env "PORT")) }))
