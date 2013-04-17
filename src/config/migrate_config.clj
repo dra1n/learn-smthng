@@ -15,7 +15,7 @@
 ;  (exec-raw "CREATE TABLE IF schema_version (version BIGINT NOT NULL, created_at TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT now())"))
 
 (defn current-db-version []
-  (maybe-create-schema-table)
+;  (maybe-create-schema-table)
   (or (:version (first (select :schema_version (fields :version) (order :created_at :DESC) (limit 1)))) 0))
 
 (defn update-db-version [version]
