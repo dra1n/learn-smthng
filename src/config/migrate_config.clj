@@ -6,12 +6,12 @@
   (:use [korma db core])
   (:require [learn-smthng.models.schema :as schema]))
 
-(defdb db schema/db-spec)
+(defdb db (postgres schema/db-spec))
 
 (defn- maybe-create-schema-table
   "Creates the schema table if it doesn't already exist."
-  [args]
-  (exec-raw "CREATE TABLE IF NOT EXISTS schema_version (version INTEGER NOT NULL, created_at TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT now())"))
+  [& args]
+  (exec-raw "CREATE TABLE IF NOT EXISTS schema_version (version BIGINT NOT NULL, created_at TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT now())"))
 
 (defn current-db-version []
   (maybe-create-schema-table)
@@ -21,11 +21,8 @@
   (insert :schema_version (values {:version version})))
 
 (defn migrate-config []
-  { :directory "/migrations/"
-   :ns-content "\n (:use
-   [korma.db]
-   [korma.core]
-   )"
+  { :directory "/src/migrations/"
+   :ns-content "\n (:use [korma db core])"
    :namespace-prefix "migrations"
    :init maybe-create-schema-table
    :current-version current-db-version
