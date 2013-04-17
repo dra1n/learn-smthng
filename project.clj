@@ -7,7 +7,8 @@
                  [http-kit "2.0.0"]
                  [drift "1.4.5"]
                  [compojure "1.1.5"]]
-  :plugins [[lein-ring "0.8.2"]]
+  :plugins [[lein-ring "0.8.2"]
+            [drift "1.4.5"]]
   :main learn-smthng.handler
   :ring {:handler learn-smthng.handler/app}
   :profiles

@@ -3,15 +3,10 @@
 ;; Requires Postgresql >= 9.0 (for IF NOT EXISTS clause)
 
 (ns config.migrate-config
-  (:use
-   [korma.db]
-   [korma.core]))
+  (:use [korma db core])
+  (:require [learn-smthng.models.schema :as schema]))
 
-(defdb db (postgres {:db *db-name*
-                     :host *db-host*
-                     :port *db-port*
-                     :user *db-user*
-                     :password *db-password* }))
+(defdb db schema/db-spec)
 
 (defn- maybe-create-schema-table
   "Creates the schema table if it doesn't already exist."
