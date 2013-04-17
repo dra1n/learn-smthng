@@ -8,10 +8,11 @@
 
 (defdb db (postgres schema/db-spec))
 
-(defn- maybe-create-schema-table
-  "Creates the schema table if it doesn't already exist."
-  [& args]
-  (exec-raw "CREATE TABLE IF NOT EXISTS schema_version (version BIGINT NOT NULL, created_at TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT now())"))
+; Postgres 8.1 :(
+;(defn- maybe-create-schema-table
+;  "Creates the schema table if it doesn't already exist."
+;  [& args]
+;  (exec-raw "CREATE TABLE IF schema_version (version BIGINT NOT NULL, created_at TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT now())"))
 
 (defn current-db-version []
   (maybe-create-schema-table)
@@ -24,6 +25,6 @@
   { :directory "/src/migrations/"
    :ns-content "\n (:use [korma db core])"
    :namespace-prefix "migrations"
-   :init maybe-create-schema-table
+;   :init maybe-create-schema-table
    :current-version current-db-version
    :update-version update-db-version })
