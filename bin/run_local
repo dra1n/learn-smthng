@@ -1,1 +1,1 @@
-env HOST=0.0.0.0 PORT=8080 lein ring server
+env DB_NAME=learnsmthng_development DB_HOST=localhost DB_PORT=5432 DB_PASSWORD= DB_USERNAME=learnsmthng HOST=0.0.0.0 PORT=8080 lein ring server
