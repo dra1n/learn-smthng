@@ -17,6 +17,6 @@ export LEIN_JVM_OPTS=-Duser.home=$HOME
 
 cd $OPENSHIFT_REPO_DIR
 
-$OPENSHIFT_REPO_DIR/bin/lein migrate >${OPENSHIFT_DIY_LOG_DIR}/lein.log 2>&1 &
+$OPENSHIFT_REPO_DIR/bin/lein migrate >${OPENSHIFT_DIY_LOG_DIR}/lein.log 2>&1
 $OPENSHIFT_REPO_DIR/bin/lein trampoline run >${OPENSHIFT_DIY_LOG_DIR}/lein.log 2>&1 &
 disown
