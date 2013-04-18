@@ -5,7 +5,7 @@
 
 (defdb db (postgres schema/db-spec))
 (defentity users-table)
- 
+
 (defn create-tables
   "Create users table"
   []
@@ -18,19 +18,19 @@
   "Drop users table"
   []
   (sql/drop-table :users))
- 
+
 (defn invoke-with-connection [f]
   (sql/with-connection
      (get-connection db)
      (sql/transaction
        (f))))
- 
+
 (defn up
   "Migrates the database up to version 20130417212734."
   []
   (println "migrations.20130417212734-test up...")
   (invoke-with-connection create-tables))
-  
+
 (defn down
   "Migrates the database down from version 20130417212734."
   []
