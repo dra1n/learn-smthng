@@ -1,12 +1,13 @@
 (ns learn-smthng.handler
   (:use compojure.core)
   (:require [org.httpkit.server :as server]
-            [compojure.route :as route]))
+            [compojure.route :as route]
+            [learn-smthng.views.home :as home]))
 
 (def env (into {} (System/getenv)))
 
 (defroutes app
-  (GET "/" [] "Hello World")
+  (GET "/" [] (home/render-greetings))
   (route/resources "/")
   (route/not-found "Not Found"))
 
