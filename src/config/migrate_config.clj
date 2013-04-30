@@ -12,7 +12,7 @@
 ;(defn- maybe-create-schema-table
 ;  "Creates the schema table if it doesn't already exist."
 ;  [& args]
-;  (exec-raw "CREATE TABLE IF schema_version (version BIGINT NOT NULL, created_at TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT now())"))
+;  (exec-raw "CREATE TABLE IF NOT EXISTS schema_version (version BIGINT NOT NULL, created_at TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT now())"))
 
 (defn current-db-version []
 ;  (maybe-create-schema-table)
